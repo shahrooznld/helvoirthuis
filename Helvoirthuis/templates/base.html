@@ -1,0 +1,81 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%  load static %}
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}" type="text/css">
+    <title>Helvoirthuis</title>
+
+</head>
+<body>
+<!----------------- Nav Bar--------------------->
+<div class="container-fluid mt-1 p-0">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-expand">
+            <div class="container" ><a href="/">
+             <img src="https://www.helvoirthuis.nl/_theme/helvoirthuis/images/frontend/logo-helvoirthuis.png"  class="d-inline-block align-top" alt="">
+            </a>
+                <div>
+                    <form class="form-inline">
+                    <button class="btn btn-outline-success mr-sm-2" type="submit">Login</button>
+                  </form>
+                </div>
+                </div>
+            </nav>
+    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-sm-1 p-1 ">
+                 <!-----------------menu--------------------->
+                <ul class="nav flex-column nav-tabs" id="nav-Tab" role="tablist">
+                    {% for object in menu_list %}
+                           {% if object.menu_title == menuactive %}
+                            <a class="nav-link active rounded " id="{{ object.menu_title }} tab" href="/{{ object.menu_adres }}" role="tab" aria-controls="nav-{{ object.menu_title }}" aria-selected="false">{{ object.menu_title }}</a>
+                           {% else %}
+                            <a class="nav-link rounded" id="{{ object.menu_title }} tab" href="/{{ object.menu_adres }}" role="tab" aria-controls="nav-{{ object.menu_title }}" aria-selected="false">{{ object.menu_title }}</a>
+                       {% endif %}
+                    {% endfor %}
+                </ul>
+        {% block login %}{% endblock %}
+                 <!-----------------menu--------------------->
+        </div>
+        <!-----------------slider--------------------->
+
+
+
+        <!-----------------content--------------------->
+       <div class="col-10 bg-light" >
+         {% block slider %}
+         {% endblock %}
+       <div class="mt-2">
+        {%  if messages %}
+        <div class="messages">
+            {% for messages in messages %}
+
+                <div class="alert alert-success aler-{{ messages.tags }}">
+                    {{ messages }}
+                </div>
+                </div>
+            {% endfor %}
+
+        {% endif %}
+       </div>
+        <div class="row" style="height: 100%">
+            <div class="col">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>

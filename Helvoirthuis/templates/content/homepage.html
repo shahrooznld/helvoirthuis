@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{%  load static %}
+{% block slider %}
+        <div class="row">
+            <div class="col p-0">
+            <div id="homeslider" class="carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators ">
+          <li data-target="#homeslider" data-slide-to="0" class="active"></li>
+          <li data-target="#homeslider" data-slide-to="1"></li>
+          <li data-target="#homeslider" data-slide-to="2"></li>
+                  <li data-target="#homeslider" data-slide-to="3"></li>
+                  <li data-target="#homeslider" data-slide-to="4"></li>
+                  <li data-target="#homeslider" data-slide-to="5"></li>
+        </ol>
+            <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'image\img1.jpg' %}" class="d-block w-100" alt="...">
+
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'image\img2.jpg' %}" class="d-block w-100" alt="...">
+
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'image\img8.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+                  <div class="carousel-item">
+            <img src="{% static 'image\img4.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+                  <div class="carousel-item">
+            <img src="{% static 'image\img5.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+                  <div class="carousel-item">
+            <img src="{% static 'image\img6.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+        </div>
+            <a class="carousel-control-prev" href="#homeslider" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+            <a class="carousel-control-next" href="#homeslider" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+            </div>
+         </div>
+
+{% endblock %}
+{% block content %}
+{% for object in object_list %}
+  <div class="card-header mt-2 border bg-secondary rounded">
+        {{ object.post_title }}
+  </div>
+  <div class="card-body border rounded">
+    <blockquote class="blockquote ">
+      <p> {{ object.post_Article }}</p>
+        <img class="col-12 justify-content-center" src="{{ object.post_images.url }}" >
+      <footer class="blockquote-footer ">{{ object.post_auther}} <cite title="Source Title">- {{ object.post_time|date:"F d, Y" }}</cite></footer>
+    </blockquote>
+  </div>
+
+{% endfor %}
+{% endblock %}
